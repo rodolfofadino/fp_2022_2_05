@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ViewModels;
 
 namespace fiap2022.Controllers
 {
@@ -13,6 +14,7 @@ namespace fiap2022.Controllers
         //public ViewResult Index()
         public ViewResult Index()
         {
+
             ViewData["nome"] = "Gabriel";
             ViewData["pessos"] = new Pessoa() { Nome = "Luiz" };
             //TempData["TesteTempData"] = "Teste";// new Pessoa() { Nome = "Roberto" };
@@ -32,8 +34,13 @@ namespace fiap2022.Controllers
                 viewModel.Paises.Add(new Pais() { Nome = $"Brasil {i + 1}" });
             }
 
-
+            //return View("teste");
             return View(viewModel);
+        }
+
+        public IActionResult Sobre()
+        {
+            return View();
         }
     }
 }
