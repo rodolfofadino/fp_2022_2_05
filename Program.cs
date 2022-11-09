@@ -1,11 +1,20 @@
 ﻿
+using fiap2022.Contexts;
 using fiap2022.Middlewares;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var connection = @"Server=(localdb)\mssqllocaldb;Database=FiapDatabase;Trusted_Connection=True;ConnectRetryCount=0";
+builder.Services.AddDbContext<DataContext>
+    (o=>o.UseSqlServer(connection));
 
 builder.Services.AddControllersWithViews();
 //builder.Services.AddControllers();
+
+builder.Services.Configure<RouteOptions>
+    (options => options.LowercaseUrls = true);
+
 
 var app = builder.Build();
 
@@ -72,6 +81,8 @@ else
 }
 
 app.UseStaticFiles();
+
+
 
 
 app.UseRouting();

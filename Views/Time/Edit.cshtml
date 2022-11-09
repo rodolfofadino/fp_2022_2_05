@@ -4,11 +4,13 @@
     ViewData["Title"] = "Create";
 }
 
-<h4>Criar Time</h4>
+<h4>Editar Time</h4>
 <div class="mr-2 ml-2">
 
-<form asp-action="Create" asp-controller="Time" method="post">
+<form asp-action="Edit" asp-controller="Time" method="post">
     <div asp-validation-summary="All"></div>
+
+    <input type="hidden" asp-for="Id" />
 
     <div class="form-group">
         <label asp-for="Nome" class="control-label"></label>
