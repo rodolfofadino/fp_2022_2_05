@@ -25,7 +25,7 @@ namespace fiap2022.core.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("fiap2022.Models.Jogador", b =>
+            modelBuilder.Entity("fiap2022.core.Models.Jogador", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -51,7 +51,7 @@ namespace fiap2022.core.Migrations
                     b.ToTable("Jogadores");
                 });
 
-            modelBuilder.Entity("fiap2022.Models.Time", b =>
+            modelBuilder.Entity("fiap2022.core.Models.Time", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -74,14 +74,14 @@ namespace fiap2022.core.Migrations
                     b.ToTable("Times");
                 });
 
-            modelBuilder.Entity("fiap2022.Models.Jogador", b =>
+            modelBuilder.Entity("fiap2022.core.Models.Jogador", b =>
                 {
-                    b.HasOne("fiap2022.Models.Time", null)
+                    b.HasOne("fiap2022.core.Models.Time", null)
                         .WithMany("Jogadores")
                         .HasForeignKey("TimeId");
                 });
 
-            modelBuilder.Entity("fiap2022.Models.Time", b =>
+            modelBuilder.Entity("fiap2022.core.Models.Time", b =>
                 {
                     b.Navigation("Jogadores");
                 });
