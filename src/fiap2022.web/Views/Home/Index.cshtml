@@ -50,6 +50,19 @@
 
 <vc:noticias total="3" noticias-urgentes="false"></vc:noticias>
 
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+<script type="text/javascript">
+
+    $.get("https://localhost:7079/api/times", function (data, status) {
+        console.log("Data: " + data);
+    });
+</script>
+
+
+
 @section footer{
     <script>
         console.log('foi');
