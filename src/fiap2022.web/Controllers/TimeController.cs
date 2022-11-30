@@ -1,10 +1,12 @@
 ﻿using fiap2022.core.Contexts;
 using fiap2022.core.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace fiap2022.Controllers
 {
+    [Authorize]
     public class TimeController : Controller
     {
         private DataContext _dataContext;
@@ -15,6 +17,7 @@ namespace fiap2022.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             var times = await _dataContext.Times.ToListAsync();
@@ -28,6 +31,7 @@ namespace fiap2022.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Time model)
         {
             if (ModelState.IsValid)
@@ -87,6 +91,8 @@ namespace fiap2022.Controllers
 
         [HttpPost]
         //[HttpPost]
+        
+
         public async Task<IActionResult> Delete(int id)
         {
             var time =await _dataContext.Times.FirstOrDefaultAsync(a => a.Id == id);

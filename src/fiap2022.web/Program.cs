@@ -2,18 +2,33 @@
 using fiap2022.core.Contexts;
 using fiap2022.Middlewares;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.DataProtection;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+builder.Services.AddDataProtection()
+    .SetApplicationName("fiap")
+    .PersistKeysToFileSystem(new DirectoryInfo("C:\\Users\\rodolfofadino\\Desktop\\fiap2022"));
+
 var connection = @"Server=(localdb)\mssqllocaldb;Database=FiapDatabase;Trusted_Connection=True;ConnectRetryCount=0";
 builder.Services.AddDbContext<DataContext>
-    (o=>o.UseSqlServer(connection));
+    (o => o.UseSqlServer(connection));
 
 builder.Services.AddControllersWithViews();
 //builder.Services.AddControllers();
 
 builder.Services.Configure<RouteOptions>
     (options => options.LowercaseUrls = true);
+
+
+builder.Services.AddAuthentication("app")
+    .AddCookie("app",
+    o =>
+    {
+        o.LoginPath = "/account/login";
+        o.AccessDeniedPath = "/account/denied";
+    });
 
 
 var app = builder.Build();
@@ -86,6 +101,10 @@ app.UseStaticFiles();
 
 
 app.UseRouting();
+
+app.UseAuthentication();
+app.UseAuthorization();
+
 app.MapControllerRoute(
     name: "customizada",
     defaults: new { controller = "Home", action = "Index" },

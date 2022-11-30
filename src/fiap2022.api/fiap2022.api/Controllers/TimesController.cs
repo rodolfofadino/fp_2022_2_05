@@ -1,5 +1,7 @@
-﻿using fiap2022.core.Contexts;
+﻿using fiap2022.api.ActionFilters;
+using fiap2022.core.Contexts;
 using fiap2022.core.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +12,8 @@ namespace fiap2022.api.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [EnableCors("Default")]
+    //[CustomAuthorize]
+    [Authorize]
     public class TimesController : Controller
     {
         private DataContext _dataContext;

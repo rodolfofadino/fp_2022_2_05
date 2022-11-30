@@ -42,5 +42,22 @@ namespace fiap2022.Controllers
         {
             return View();
         }
+
+
+        public IActionResult Redirecionamento(string urlRedirect)
+        {
+            if (Url.IsLocalUrl(urlRedirect))
+            {
+                return LocalRedirect(urlRedirect);
+
+            }
+            else
+            {
+                return LocalRedirect("/");
+
+            }
+            //return Redirect(urlRedirect);
+
+        }
     }
 }
