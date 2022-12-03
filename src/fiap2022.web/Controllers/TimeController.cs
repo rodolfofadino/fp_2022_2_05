@@ -1,5 +1,5 @@
-﻿using fiap2022.core.Contexts;
-using fiap2022.core.Models;
+﻿using fiap2022.persistence.Contexts;
+using fiap2022.domain.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;

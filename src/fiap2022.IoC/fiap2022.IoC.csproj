@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation.AspNetCore" Version="11.2.2" />
+  </ItemGroup>
+
+ 
+  <ItemGroup>
+    <ProjectReference Include="..\fiap2022.application\fiap2022.application.csproj" />
+    <ProjectReference Include="..\fiap2022.infrastructure\fiap2022.infrastructure.csproj" />
+    <ProjectReference Include="..\fiap2022.persistence\fiap2022.persistence.csproj" />
+  </ItemGroup>
+
+</Project>

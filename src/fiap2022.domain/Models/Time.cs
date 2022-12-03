@@ -1,7 +1,7 @@
 ﻿//using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 
-namespace fiap2022.core.Models
+namespace fiap2022.domain.Models
 {
     public class Time
     {

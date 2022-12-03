@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using ViewModels;
 
 namespace fiap2022.Controllers
 {

@@ -1,5 +1,6 @@
-﻿using fiap2022.core.Models;
-using fiap2022.core.Services;
+﻿using fiap2022.application.Interfaces;
+using fiap2022.domain.Models;
+using fiap2022.application.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace fiap2022.ViewComponents
@@ -7,9 +8,9 @@ namespace fiap2022.ViewComponents
     public class NoticiasViewComponent : ViewComponent
     {
 
-        private NoticiaService _noticiaService;
+        private INoticiaService _noticiaService;
 
-        public NoticiasViewComponent(NoticiaService noticiaService)
+        public NoticiasViewComponent(INoticiaService noticiaService)
         {
             _noticiaService = noticiaService;
 
@@ -30,18 +31,5 @@ namespace fiap2022.ViewComponents
 
         }
 
-        private IEnumerable<Noticia> GetItems(int total)
-        {
-
-            //var listNoticias = new List<Noticia>();
-            for(int i = 1; i <= total; i++)
-            {
-               // listNoticias.Add(new Noticia() { Id = i, Titulo = $"Titulo Da Noticia {i}" });
-                yield return new Noticia() { Id = i, Titulo = $"Titulo Da Noticia {i}" };
-
-            }
-
-            //return listNoticias;
-        }
     }
 }

@@ -3,17 +3,20 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using fiap2022.core.Contexts;
+using fiap2022.persistence.Contexts;
 
 #nullable disable
 
-namespace fiap2022.core.Migrations
+namespace fiap2022.persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20221109002741_AddContinentToTimes")]
+    partial class AddContinentToTimes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,7 +25,7 @@ namespace fiap2022.core.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("fiap2022.core.Models.Jogador", b =>
+            modelBuilder.Entity("fiap2022.persistence.Models.Jogador", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -48,7 +51,7 @@ namespace fiap2022.core.Migrations
                     b.ToTable("Jogadores");
                 });
 
-            modelBuilder.Entity("fiap2022.core.Models.Time", b =>
+            modelBuilder.Entity("fiap2022.persistence.Models.Time", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -75,14 +78,14 @@ namespace fiap2022.core.Migrations
                     b.ToTable("Times");
                 });
 
-            modelBuilder.Entity("fiap2022.core.Models.Jogador", b =>
+            modelBuilder.Entity("fiap2022.persistence.Models.Jogador", b =>
                 {
-                    b.HasOne("fiap2022.Models.Time", null)
+                    b.HasOne("fiap2022.persistence.Models.Time", null)
                         .WithMany("Jogadores")
                         .HasForeignKey("TimeId");
                 });
 
-            modelBuilder.Entity("fiap2022.core.Models.Time", b =>
+            modelBuilder.Entity("fiap2022.persistence.Models.Time", b =>
                 {
                     b.Navigation("Jogadores");
                 });

@@ -33,7 +33,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\fiap2022.core\fiap2022.core.csproj" />
+    <ProjectReference Include="..\fiap2022.application\fiap2022.application.csproj" />
+    <ProjectReference Include="..\fiap2022.domain\fiap2022.domain.csproj" />
+    <ProjectReference Include="..\fiap2022.infrastructure\fiap2022.infrastructure.csproj" />
+    <ProjectReference Include="..\fiap2022.IoC\fiap2022.IoC.csproj" />
+    <ProjectReference Include="..\fiap2022.persistence\fiap2022.persistence.csproj" />
   </ItemGroup>
 
 </Project>

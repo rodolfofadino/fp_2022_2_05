@@ -1,50 +1,16 @@
 ﻿
-using fiap2022.core.Contexts;
+
 using fiap2022.Middlewares;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.DataProtection;
-using fiap2022.core.Services;
+
 using Microsoft.Net.Http.Headers;
 using Microsoft.AspNetCore.ResponseCompression;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
-//builder.Services.AddDataProtection()
-//    .SetApplicationName("fiap")
-//    .PersistKeysToFileSystem(new DirectoryInfo("C:\\Users\\rodolfofadino\\Desktop\\fiap2022"));
-
-var connection = @"Server=(localdb)\mssqllocaldb;Database=FiapDatabase;Trusted_Connection=True;ConnectRetryCount=0";
-builder.Services.AddDbContext<DataContext>
-    (o => o.UseSqlServer(connection));
-
 builder.Services.AddControllersWithViews();
-//builder.Services.AddControllers();
-
-builder.Services.AddTransient<NoticiaService>();
-
-builder.Services.Configure<RouteOptions>
-    (options => options.LowercaseUrls = true);
-
-builder.Services.AddMemoryCache();
-
-builder.Services.Configure<GzipCompressionProviderOptions>(
-    o => o.Level = System.IO.Compression.CompressionLevel.SmallestSize);
-
-builder.Services.AddResponseCompression(o =>
-{
-    o.Providers.Add<GzipCompressionProvider>();
-});
-
-
-builder.Services.AddAuthentication("app")
-    .AddCookie("app",
-    o =>
-    {
-        o.LoginPath = "/account/login";
-        o.AccessDeniedPath = "/account/denied";
-    });
-
+fiap2022.IoC.DependencyContainer.RegisterServices(builder.Services, builder.Configuration);
 
 var app = builder.Build();
 
@@ -158,7 +124,7 @@ app.Run();
 //});
 
 
-namespace ViewModels
+namespace fiap2022
 {
     [Serializable]
     public class Pessoa

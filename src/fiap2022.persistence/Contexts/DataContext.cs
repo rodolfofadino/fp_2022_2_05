@@ -1,7 +1,7 @@
-﻿using fiap2022.core.Models;
+﻿using fiap2022.domain.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace fiap2022.core.Contexts
+namespace fiap2022.persistence.Contexts
 {
     public class DataContext : DbContext
     {

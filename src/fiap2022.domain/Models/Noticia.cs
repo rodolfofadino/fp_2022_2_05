@@ -1,4 +1,4 @@
-﻿namespace fiap2022.core.Models
+﻿namespace fiap2022.domain.Models
 {
     public class Noticia
     {
