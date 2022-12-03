@@ -1,0 +1,17 @@
+[
+  {
+    "outputFileName": "wwwroot/bundle.js",
+    "inputFiles": [
+      "wwwroot/site.js",
+      "wwwroot/jquery.jcarousel.min.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/site.css",
+    "inputFiles": [
+      "wwwroot/bootstrap.css",
+      "wwwroot/images/pais.sprite.css",
+      "wwwroot/jcarousel.basic.css"
+    ]
+  }
+]

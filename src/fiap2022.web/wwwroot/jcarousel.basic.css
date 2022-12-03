@@ -1,3 +1,18 @@
+body {
+    color: #ffd800;
+}
+
+#menu ul li{
+    padding:10px;
+    display: inline-block;
+}
+#menu ul li img{
+    width:50px;
+}
+.icon {
+    width: 50px;
+}
+
 .jcarousel-wrapper {
     margin: 20px auto;
     position: relative;

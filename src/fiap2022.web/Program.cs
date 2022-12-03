@@ -4,13 +4,15 @@ using fiap2022.Middlewares;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.DataProtection;
 using fiap2022.core.Services;
+using Microsoft.Net.Http.Headers;
+using Microsoft.AspNetCore.ResponseCompression;
 
 var builder = WebApplication.CreateBuilder(args);
 
 
-builder.Services.AddDataProtection()
-    .SetApplicationName("fiap")
-    .PersistKeysToFileSystem(new DirectoryInfo("C:\\Users\\rodolfofadino\\Desktop\\fiap2022"));
+//builder.Services.AddDataProtection()
+//    .SetApplicationName("fiap")
+//    .PersistKeysToFileSystem(new DirectoryInfo("C:\\Users\\rodolfofadino\\Desktop\\fiap2022"));
 
 var connection = @"Server=(localdb)\mssqllocaldb;Database=FiapDatabase;Trusted_Connection=True;ConnectRetryCount=0";
 builder.Services.AddDbContext<DataContext>
@@ -23,6 +25,16 @@ builder.Services.AddTransient<NoticiaService>();
 
 builder.Services.Configure<RouteOptions>
     (options => options.LowercaseUrls = true);
+
+builder.Services.AddMemoryCache();
+
+builder.Services.Configure<GzipCompressionProviderOptions>(
+    o => o.Level = System.IO.Compression.CompressionLevel.SmallestSize);
+
+builder.Services.AddResponseCompression(o =>
+{
+    o.Providers.Add<GzipCompressionProvider>();
+});
 
 
 builder.Services.AddAuthentication("app")
@@ -86,8 +98,6 @@ var app = builder.Build();
 app.UseMeuMiddlwareDeLogs();
 
 
-
-
 #region mvc
 if (app.Environment.IsDevelopment())
 {
@@ -98,7 +108,16 @@ else
     app.UseExceptionHandler("ErrorProd");
 }
 
-app.UseStaticFiles();
+app.UseResponseCompression();
+
+app.UseStaticFiles(new StaticFileOptions()
+{
+    OnPrepareResponse = ctx =>
+    {
+        int duration = 60 * 60 * 24 * 365;
+        ctx.Context.Response.Headers[HeaderNames.CacheControl] = $"public, max-age={duration}";
+    }
+});
 
 
 
