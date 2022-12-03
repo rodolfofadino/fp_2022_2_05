@@ -5,67 +5,43 @@
 
 }
 
-<email mail-to="financeiro"></email>
+<section class="jumbotron text-center">
+    <div class="container">
+        <h1 class="jumbotron-heading">Tript</h1>
+        <p class="lead text-muted">Conheca as novidades sobre os melhores destinos e esteja sempre por dentro das novidades.</p>
+        <p>
+            <a href="#" class="btn btn-primary my-2">Buscar passagens</a>
+            <a href="#" class="btn btn-secondary my-2">Conheca nosso blog</a>
+        </p>
+    </div>
+</section>
 
-<div>
-    <select>
-        @foreach (var pais in Model.Paises)
-        {
-            <option>@pais.Nome</option>
-        }
-    </select>
+<div class="row">
+    <div id="carroseul" class="col">
+        <div class="jcarousel-wrapper">
+            <div class="jcarousel">
+                <ul>
+                    <li>
+                        <img class="carroseulimage" src="~/images/imagem-1.png" />
+                    </li>
+                    <li>
+                        <img class="carroseulimage" src="~/images/imagem-2.png" />
+                    </li>
+                    <li>
+                        <img class="carroseulimage" src="~/images/imagem-3.png" />
+                    </li>
+                    <li>
+                        <img class="carroseulimage" src="~/images/imagem-4.png" />
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <a href="#" class="jcarousel-control-prev">&lsaquo;</a>
+                <a href="#" class="jcarousel-control-next">&rsaquo;</a>
+            </div>
+            <div>	    </div>
 
+        </div>
+    </div>
 </div>
-<ul>
-    @foreach (var pessoa in Model.Pessoas)
-    {
-
-        <li>
-            <input type="text" value="@pessoa.Nome" name="Nome" />
-            @*<input type="text" a/>*@
-
-            @* @Html.EditorFor(pessoa.Nome)*@
-            @pessoa.Nome
-        </li>
-    }
-</ul>
-
-
-
-@*<h1>@Model[0].Nome</h1>
-
-
-    <h1>@ViewData["nome"]</h1>
-    <h1>@ViewData["Categoria"]</h1>
-    <h1>@ViewBag.Categoria</h1>*@
-
-
-
-@*<h1>@((Pessoa)ViewData["pessoa"]).Nome</h1>*@
-<h1>Teste teste</h1>
-
-
-@await Component.InvokeAsync("Noticias", new {total=3, noticiasUrgentes=true})
-
-
-<vc:noticias total="3" noticias-urgentes="false"></vc:noticias>
-
-
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"
-        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous"></script>
-<script type="text/javascript">
-
-    $.get("https://localhost:7079/api/times", function (data, status) {
-        console.log("Data: " + data);
-    });
-</script>
-
-
-
-@section footer{
-    <script>
-        console.log('foi');
-    </script>
-
-}
+<vc:noticias total="20" noticias-urgentes="false"></vc:noticias>

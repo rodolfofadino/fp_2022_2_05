@@ -3,6 +3,7 @@ using fiap2022.core.Contexts;
 using fiap2022.Middlewares;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.DataProtection;
+using fiap2022.core.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +18,8 @@ builder.Services.AddDbContext<DataContext>
 
 builder.Services.AddControllersWithViews();
 //builder.Services.AddControllers();
+
+builder.Services.AddTransient<NoticiaService>();
 
 builder.Services.Configure<RouteOptions>
     (options => options.LowercaseUrls = true);
